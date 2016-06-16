@@ -1,6 +1,23 @@
 {
   "name": "civicTest",
   "dependencies": {
+    "async": {
+      "version": "2.0.0-rc.6",
+      "from": "async@latest",
+      "resolved": "https://registry.npmjs.org/async/-/async-2.0.0-rc.6.tgz",
+      "dependencies": {
+        "lodash": {
+          "version": "4.13.1",
+          "from": "lodash@>=4.8.0 <5.0.0",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.13.1.tgz"
+        }
+      }
+    },
+    "chance": {
+      "version": "1.0.3",
+      "from": "chance@latest",
+      "resolved": "https://registry.npmjs.org/chance/-/chance-1.0.3.tgz"
+    },
     "meteor-node-stubs": {
       "version": "0.2.3",
       "from": "meteor-node-stubs@>=0.2.0 <0.3.0",
@@ -508,6 +525,11 @@
           }
         }
       }
+    },
+    "moment": {
+      "version": "2.13.0",
+      "from": "moment@latest",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.13.0.tgz"
     },
     "react": {
       "version": "15.1.0",
