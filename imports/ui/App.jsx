@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+
+import { Calls } from '../api/calls.js';
 
 import Call from './Call.jsx';
 
 // App component - represents the whole app
-export default class App extends Component {
-  getCalls() {
-    return [
-      { _id: 1, text: 'This is call 1' },
-      { _id: 2, text: 'This is call 2' },
-      { _id: 3, text: 'This is call 3' },
-    ];
-  }
-
+class App extends Component {
   renderCalls() {
-    return this.getCalls().map((call) => (
+    return this.props.calls.map((call) => (
       <Call key={call._id} call={call} />
     ));
   }
@@ -24,6 +19,7 @@ export default class App extends Component {
         <header>
           <h1>Call List</h1>
         </header>
+
         <ul>
           {this.renderCalls()}
         </ul>
@@ -31,3 +27,13 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  calls: PropTypes.array.isRequired,
+};
+
+export default createContainer(() => {
+  return {
+    calls: Calls.find({}).fetch(),
+  };
+}, App);
