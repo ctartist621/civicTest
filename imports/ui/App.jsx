@@ -74,6 +74,7 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
+  Meteor.subscribe('calls');
   return {
     calls: Calls.find({}, { sort: { timestamp: -1 } }).fetch(),
   };
