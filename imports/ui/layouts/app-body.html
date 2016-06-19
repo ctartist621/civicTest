@@ -1,0 +1,19 @@
+<body>
+  <h1>Woot!</h1>
+
+  <ul>
+  {{> Calls_list}}
+  </ul>
+</body>
+
+<template name="Calls_list">
+  {{#each callId in callIdArray}}
+    {{> Calls_show (callArgs callId)}}
+  {{else}}
+    {{> App_notFound}}
+  {{/each}}
+</template>
+
+<template name="Calls_show">
+  <li>hello</li>
+</template>

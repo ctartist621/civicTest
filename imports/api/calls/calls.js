@@ -15,3 +15,9 @@ Calls.schema = new SimpleSchema({
 });
 
 Calls.attachSchema(Calls.schema);
+
+Meteor.publish('calls', function () {
+  return Calls.find({}, {
+    fields: Calls.publicFields,
+  });
+});
