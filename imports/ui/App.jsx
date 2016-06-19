@@ -9,6 +9,8 @@ import Call from './Call.jsx';
 
 import _ from 'lodash';
 
+var QUERY_INCREMENT = 50;
+
 // App component - represents the whole app
 class App extends Component {
   handleSubmit(event) {
@@ -69,12 +71,44 @@ class App extends Component {
   }
 }
 
+// whenever #showMoreResults becomes visible, retrieve more results
+function showMoreVisible() {
+  var threshold;
+  var target = $('#showMoreResults');
+  console.log(target);
+  if (!target.length) return;
+
+  threshold = $(window).scrollTop() + $(window).height() - target.height();
+
+  if (target.offset().top < threshold) {
+    if (!target.data('visible')) {
+      console.log('target became visible (inside viewable area)');
+      target.data('visible', true);
+      Session.set('queryLimit',
+          Session.get('queryLimit') + QUERY_INCREMENT);
+    }
+  } else {
+    if (target.data('visible')) {
+      console.log('target became invisible (below viewable arae)');
+      target.data('visible', false);
+    }
+  }
+}
+
+// run the above func every time the user scrolls
+$(window).scroll(showMoreVisible);
+
 App.propTypes = {
   calls: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
-  Meteor.subscribe('calls');
+  Session.set('queryLimit', QUERY_INCREMENT);
+
+  Deps.autorun(function () {
+    Meteor.subscribe('calls', Session.get('queryLimit'));
+  });
+
   return {
     calls: Calls.find({}, { sort: { timestamp: -1 } }).fetch(),
   };
