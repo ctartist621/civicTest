@@ -5,10 +5,14 @@ import { Calls } from '../api/calls.js';
 
 import Call from './Call.jsx';
 
+import _ from 'lodash';
+
 // App component - represents the whole app
 class App extends Component {
   renderCalls() {
-    return this.props.calls.map((call) => (
+    var calls = this.props.calls;
+    calls = _.orderBy(calls, 'timestamp', 'desc');
+    return calls.map((call) => (
       <Call key={call._id} call={call} />
     ));
   }

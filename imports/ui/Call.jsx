@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 
 // Call component - represents a single todo item
 export default class Call extends Component {
   render() {
     return (
-      <li>{this.props.call.text}</li>
+      <li>{moment(this.props.call.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')} :: {this.props.call.clientName} :: {this.props.call.endpointCalled} :: {this.props.call.result}</li>
     );
   }
 }
