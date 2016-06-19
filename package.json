@@ -1,0 +1,19 @@
+{
+  "name": "civicTest",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "async": "2.0.0-rc.6",
+    "chance": "1.0.3",
+    "faker": "3.1.0",
+    "lodash": "4.13.1",
+    "meteor-node-stubs": "~0.2.0",
+    "moment": "2.13.0",
+    "react": "15.1.0",
+    "react-addons-pure-render-mixin": "15.1.0",
+    "react-dom": "15.1.0"
+  },
+  "version": "0.1.0"
+}
