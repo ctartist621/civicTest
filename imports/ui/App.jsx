@@ -76,21 +76,14 @@ class App extends Component {
 function showMoreVisible() {
   var threshold;
   var target = $('#showMoreResults');
-  console.log(target);
   if (!target.length) return;
 
   threshold = $(window).scrollTop() + $(window).height() - target.height();
 
-  console.log(target.offset().top <= threshold);
-  console.log(target.offset().top, threshold);
-
   if (target.offset().top <= threshold && !target.data('visible')) {
-    console.log('target became visible (inside viewable area)');
     target.data('visible', true);
     Session.set('queryLimit', Session.get('queryLimit') + QUERY_INCREMENT);
-    console.log(Session.get('queryLimit'));
   } else if (target.data('visible')) {
-    console.log('target became invisible (below viewable arae)');
     target.data('visible', false);
   }
 }
@@ -103,10 +96,7 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
-  console.log('createContainer', Session.get('queryLimit'));
-
   Tracker.autorun(() => {
-    console.log('autorun', Session.get('queryLimit'));
     Meteor.subscribe('calls', Session.get('queryLimit'));
   });
 
